@@ -121,14 +121,7 @@ app.get("/products", async (req, res) => {
 // Update a product // EDIT / UPDATE
 app.put("/product/:id", upload.array("images"), async (req, res) => {
   try {
-    const found = await Product.findOne({
-      name: { $regex: req.body.name, $options: "i" },
-    });
-    if (found) {
-      console.log(found);
-      console.log(found.name);
-      return res.status(500).json({ message: `${found}, already exist` });
-    }
+   
 
     const { name, description, MRP, discount, shippingCharge } = req.body;
     const images = req.files.map((file) => file.path);
